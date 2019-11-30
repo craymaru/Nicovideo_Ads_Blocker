@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+  "name": "Nicovideo Ads Blocker",
+  "description": "Remove the Nicovideo Video-Ads. (educational and personal use only)",
+  "version": "2.4.1",
+  "content_scripts": [
+    {
+      "js": ["js/nicovideo_ads_blocker.js"],
+      "matches": [
+        "https://www.nicovideo.jp/watch/*",
+        "http://www.nicovideo.jp/watch/*"
+      ]
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "browser_action": {
+    "default_icon": "icons/icon19.png",
+    "default_title": "Nicovideo Ads Blocker"
+  }
+}
