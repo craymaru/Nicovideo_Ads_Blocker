@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Nicovideo Ads Blocker",
   "description": "Remove the Nicovideo Video-Ads. (educational and personal use only)",
-  "version": "2.4.1",
+  "version": "3.1.2",
   "content_scripts": [
     {
       "js": ["js/nicovideo_ads_blocker.js"],

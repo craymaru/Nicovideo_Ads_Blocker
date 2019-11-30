@@ -1,7 +1,14 @@
-// Variables
-var extentionsName = "[Nicovideo Ads Blocker]";
+/* -------------------------\
+|   Nicovideo Ads Blocker   |
+|   Version: 3.1.2          |
+\--------------------------*/
 
-// DOM Detect Configuration
+// VARIABLES
+var extName = "[Nicovideo Ads Blocker]";
+
+console.log(extName, "[START] MutationObserver is Running.");
+
+// DOM " MutationObserver " CONFIGRATION
 const configuration = {
   attributes: true,
   attributeFilter: ["src"],
@@ -12,26 +19,37 @@ const configuration = {
   subtree: true
 };
 
-// DON Detects
-console.log(extentionsName, "[START] MutationObserver is Running.");
+// DETECT DOM <* src=""> CHANGES
 var observer = new MutationObserver(function(mutations) {
   mutations.some(function(mutation) {
-    console.log(extentionsName, "[DETECTED]", mutation);
-    console.log(extentionsName, "[DETECTED] Type:", mutation.target.localName);
-    if (
-      mutation.type === "attributes" &&
-      mutation.attributeName === "src" &&
-      mutation.target.localName == "video"
-    ) {
-      console.log(extentionsName, "[DETECTED] Old:", mutation.oldValue);
-      console.log(extentionsName, "[DETECTED] New:", mutation.target.src);
+    console.log(extName, "[DETECTED]", mutation);
+    console.log(extName, "[DETECTED] (TYPE) TAG:", mutation.target.localName);
+    // DIVIDE <video src="">
+    if (mutation.type === "attributes" && mutation.attributeName === "src" && mutation.target.localName == "video") {
+      // COMPARE NEW and OLD
+      console.log(extName, "[DETECTED] (OLD) SRC:", mutation.oldValue);
+      console.log(extName, "[DETECTED] (NEW) SRC:", mutation.target.src);
+      // DIVIDE by URL-LENGTH -- <video src="any-url-length">
       if (mutation.target.src.length > 66) {
-        const video = document.getElementsByTagName("video");
-        video[1].src = "";
-        video[2].src = "";
-        console.log(extentionsName, "[BLOCK!] Clear the Video source!");
+        // GET EXIST DOM ELEMENTS
+        const videoSrcs = document.getElementsByTagName("video");
+        console.log(extName, "[DETECTED] There is", videoSrcs.length, "video element(s).");
+        // BLOCKS forEach.call
+        Array.prototype.forEach.call(videoSrcs, function(value, index) {
+          if (index != 0) {
+            // BLOCK!
+            console.log(extName, "[BLOCK!]", index, "of", videoSrcs.length, ": Maybe this is the Ads.", value);
+            videoSrcs[index].src = "";
+          } else {
+            // SKIP First-time
+            console.log(extName, "[SKIP..]", index, "of", videoSrcs.length, ": This is the main video.", value);
+          }
+        });
+        // ALL BLOCKED!
+        console.log(extName, "[ALL BLOCKED!] Clear the all video sources!");
       } else {
-        console.log(extentionsName, "[CLEAR] Not Ads.");
+        // NO ADS
+        console.log(extName, "[CLEAR] Not Ads.");
       }
       return true;
     }
