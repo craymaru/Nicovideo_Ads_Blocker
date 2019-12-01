@@ -1,6 +1,6 @@
 /* -------------------------\
 |   Nicovideo Ads Blocker   |
-|   Version: 3.1.2          |
+|   Version: 3.1.3          |
 \--------------------------*/
 
 // VARIABLES
@@ -38,8 +38,8 @@ var observer = new MutationObserver(function(mutations) {
         Array.prototype.forEach.call(videoSrcs, function(value, index) {
           if (index != 0) {
             // BLOCK!
-            console.log(extName, "[BLOCK!]", index, "of", videoSrcs.length, ": Maybe this is the Ads.", value);
             videoSrcs[index].src = "";
+            console.log(extName, "[BLOCK!]", index, "of", videoSrcs.length, ": Maybe this is the Ads.", value);
           } else {
             // SKIP First-time
             console.log(extName, "[SKIP..]", index, "of", videoSrcs.length, ": This is the main video.", value);
