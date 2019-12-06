@@ -1,11 +1,11 @@
 # Nicovideo Ads Blocker
 
 ## Feature
-Observe the DOM to detect and remove the Nicovideo video ads.
+Observe the DOM to detect and remove the Nicovideo video ads.  
 ニコニコ動画(く)の動画広告を自動的に検出し削除します。
 
 
-> ⚠️CAUTION:  
+> ⚠️CAUTION  
 >*This code is for educational purposes and personal use only.*  
 >*このコードは、教育目的および個人使用のみを目的としています。*
   
