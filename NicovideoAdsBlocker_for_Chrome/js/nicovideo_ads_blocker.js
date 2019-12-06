@@ -1,10 +1,11 @@
 /* -------------------------\
 |   Nicovideo Ads Blocker   |
-|   Version: 3.1.3          |
+|   Version: 3.2.0          |
 \--------------------------*/
 
 // VARIABLES
 var extName = "[Nicovideo Ads Blocker]";
+var excludeUrl = new RegExp("(^https?://www.nicovideo.jp/watch/)");
 
 console.log(extName, "[START] MutationObserver is Running.");
 
@@ -29,8 +30,13 @@ var observer = new MutationObserver(function(mutations) {
       // COMPARE NEW and OLD
       console.log(extName, "[DETECTED] (OLD) SRC:", mutation.oldValue);
       console.log(extName, "[DETECTED] (NEW) SRC:", mutation.target.src);
+
+      /* OLD
       // DIVIDE by URL-LENGTH -- <video src="any-url-length">
-      if (mutation.target.src.length > 66) {
+      // if (mutation.target.src.length > 66) {
+      */
+      // DIVIDE by Regular Expressions
+      if (!excludeUrl.exec(mutation.target.src)) {
         // GET EXIST DOM ELEMENTS
         const videoSrcs = document.getElementsByTagName("video");
         console.log(extName, "[DETECTED] There is", videoSrcs.length, "video element(s).");
@@ -38,8 +44,8 @@ var observer = new MutationObserver(function(mutations) {
         Array.prototype.forEach.call(videoSrcs, function(value, index) {
           if (index != 0) {
             // BLOCK!
-            videoSrcs[index].src = "";
             console.log(extName, "[BLOCK!]", index, "of", videoSrcs.length, ": Maybe this is the Ads.", value);
+            videoSrcs[index].src = "";
           } else {
             // SKIP First-time
             console.log(extName, "[SKIP..]", index, "of", videoSrcs.length, ": This is the main video.", value);
