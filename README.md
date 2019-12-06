@@ -10,14 +10,11 @@ Observe the DOM to detect and remove the Nicovideo video ads.
 >*This code is for educational purposes and personal use only.*
 >*このコードは、教育目的および個人使用のみを目的としています。*  
 >
----
 
 
 ## How do I add Extension to Chrome?
 https://www.youtube.com/watch?v=hIRX1dpfqHc
 
-
----
 
 
 ## Changes
@@ -32,8 +29,6 @@ https://www.youtube.com/watch?v=hIRX1dpfqHc
 
 1.0.0
 > First.
-
----
 
 ## Versions
 * 3.2.0 Latest
